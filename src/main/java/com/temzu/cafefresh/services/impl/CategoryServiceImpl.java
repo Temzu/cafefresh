@@ -26,7 +26,7 @@ public class CategoryServiceImpl implements CategoryService {
 
   @Override
   public Page<CategoryDto> findPage(int page, int pageSize) {
-    return null;
+    return categoryDao.findPage(page, pageSize).map(categoryMapper::toCategoryDto);
   }
 
   @Override

@@ -7,6 +7,7 @@ import com.temzu.cafefresh.repositories.CategoryRepository;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,7 +23,7 @@ public class CategoryDaoImpl implements CategoryDao {
 
   @Override
   public Page<Category> findPage(int page, int pageSize) {
-    return null;
+    return categoryRepository.findAllByActiveStatusTrue(PageRequest.of(page - 1, pageSize));
   }
 
   @Override

@@ -19,7 +19,7 @@ public class ProductServiceImpl implements ProductService {
 
   @Override
   public Page<ProductDto> findPage(Integer page, Integer pageSize) {
-    return null;
+    return productDao.findPage(page, pageSize).map(productMapper::toProductDto);
   }
 
   @Override

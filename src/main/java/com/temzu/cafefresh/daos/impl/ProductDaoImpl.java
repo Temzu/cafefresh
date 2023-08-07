@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,7 +20,7 @@ public class ProductDaoImpl implements ProductDao {
 
   @Override
   public Page<Product> findPage(int page, int pageSize) {
-    return null;
+    return productRepository.findAll(PageRequest.of(page - 1, pageSize));
   }
 
   @Override
