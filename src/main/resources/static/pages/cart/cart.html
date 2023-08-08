@@ -1,0 +1,110 @@
+<div class="title">
+  <h3 class="text-center">Корзина</h3>
+</div>
+
+<div class="container">
+
+  <span ng-show="cart == null || cart.items.length == 0">Корзина пуста</span>
+
+  <div class="container">
+    <div class="cart-table">
+      <div class="row cart-product" ng-repeat="oi in cart.items">
+
+        <div class="col-lg-2 cart-product-img" ng-repeat="p in allProducts | filter:{id : oi.productId} : true">
+          <img src="{{p.imageName}}" alt="">
+        </div>
+
+        <div class="col-lg-3 col-3">
+          <h5>{{oi.productTitle}}</h5>
+        </div>
+
+        <div class="col-lg-2 col-2">
+          <div class="row">
+            <div class="col p-0 text-center">
+              <a type="button" ng-click="decrementCartPosition(oi.productId)">
+                <img class="mx-auto d-block" src="./images/icons/iconfinder-64-minus.png" alt="" height="32">
+              </a>
+            </div>
+            <div class="col-2 p-0">
+              <h4 class="text-center">{{oi.quantity}}</h4>
+            </div>
+
+            <div class="col p-0 text-center">
+              <a type="button" ng-click="incrementCartPosition(oi.productId)">
+                <img class="mx-auto d-block" src="./images/icons/iconfinder-64.png"  alt="" height="32">
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-2 text-center">
+          <h4>{{oi.price}}₽</h4>
+        </div>
+
+        <div class="col-lg-2 col-2 text-center">
+          <button class="btn btn-danger" ng-click="removeItemFromCart(oi.productId)">Удалить
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div ng-show="cart.items.length > 0">
+    <div class="title">
+      <h3 class="text-center">ОФОРМЛЕНИЕ ЗАКАЗА</h3>
+    </div>
+
+    <div class="row justify-content-center align-items-center ">
+      <div class="col-10 col-md-8 col-lg-6 delivery_form">
+        <form ng-submit="createOrder()">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="nameField">Имя</label>
+            <div class="col-sm-10">
+              <input class="form-control" type="text" ng-model="order_info.clientName"
+                     id="nameField" required>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="phoneField">Телефон</label>
+            <div class="col-sm-10">
+              <input class="form-control" type="text" ng-model="order_info.phone" id="phoneField" required>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="destinationField">Адрес</label>
+            <div class="col-sm-10">
+              <input class="form-control" type="text" ng-model="order_info.address"
+                     id="destinationField" required>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label for="inputGroupSelect01">Тип заказа</label>
+            <select class="form-select" id="inputGroupSelect01" ng-model="order_info.orderTypeValue"
+                    required>
+              <option selected disabled value="">Выберите...</option>
+              <option value="1">Доставка</option>
+              <option value="2">Самовывоз</option>
+            </select>
+          </div>
+
+          <div class="text-center">
+            <button ng-show="isUserLoggedIn()" class="btn btn-dark" type="submit">Заказать
+            </button>
+            <button ng-show="!isUserLoggedIn()" class="btn btn-secondary" data-bs-toggle="modal"
+                    data-bs-target="#ModalForm">Авторизация
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+  </div>
+</div>

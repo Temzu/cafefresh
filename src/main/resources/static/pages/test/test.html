@@ -1,0 +1,42 @@
+<div class="title">
+  <h3 class="text-center">Админ-панель</h3>
+</div>
+
+<div class="container">
+
+  <div class="row justify-content-evenly">
+
+    <form ng-submit="tryUploadImage()">
+      <div>
+        <label for="profile_pic">Choose file to upload</label>
+        <input class="form-control-file" type="file" id="profile_pic" name="image" accept=".jpg, .jpeg, .png">
+      </div>
+      <div>
+        <button class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+
+    <form>
+      <div>
+        <label for="file">Choose file to upload</label>
+        <input type="file" id="file" name="file" multiple>
+      </div>
+      <div>
+        <button>Submit</button>
+      </div>
+    </form>
+
+    <form>
+      <input type="file" id="fileinput" accept=".jpg, .jpeg, .png">
+      <button type="submit" ng-click="uploadImage()">Создать</button>
+    </form>
+
+  </div>
+
+
+
+  <script>
+    var test = document.querySelector('input');
+  </script>
+
+</div>
