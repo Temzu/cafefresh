@@ -1,0 +1,10 @@
+.home-border {
+  border-left: 9px solid hsl(180, 20%, 93%);
+}
+
+@media screen and (max-width: 1260px) {
+  .home-border {
+    border-left: 0;
+    margin-top: 30px;
+  }
+}

@@ -1,0 +1,46 @@
+<div class="title">
+  <h3 class="text-center">Заказы</h3>
+</div>
+
+<button type="button" ng-model="activeCustomer" value="Обрабатывается" ng-click="getVal($event)"  class="btn btn-danger">Обрабатывается</button>
+<button type="button" ng-model="activeCustomer" value="Готовится" ng-click="getVal($event)"  class="btn btn-primary">Готовится</button>
+<button type="button" ng-model="activeCustomer" value="Доставляется" ng-click="getVal($event)"  class="btn btn-success">Доставляется</button>
+<button type="button" ng-model="activeCustomer" value="Закрыт" ng-click="getVal($event)"  class="btn btn-secondary">Закрыт</button>
+<a href="#!/manager/order_report" class="btn btn-dark">Составить отчет</a>
+
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <td>ID</td>
+    <td>Детали</td>
+    <td>Адрес доставки</td>
+    <td>Телефон</td>
+    <td>Цена</td>
+    <td>Статус</td>
+    <td>Тип</td>
+    <td></td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="o in allOrders | filter:{orderStatus : activeCustomer} : true">
+    <td>#{{o.id}}</td>
+    <td>
+      <div ng-repeat="oi in o.items">
+        <span>{{oi.productTitle + ' x' + oi.quantity}}</span>
+        <p></p>
+      </div>
+    </td>
+    <td>{{o.address}}</td>
+    <td>{{o.phone}}</td>
+    <td>{{o.price}}₽</td>
+    <td class="text_center">
+      {{o.orderStatus}}
+      <br>
+      <button type="button" ng-show="!isClosed(o.orderStatus)" ng-click="changeStatus(o.id)"  class="btn btn-secondary">Перенести -></button>
+    </td>
+    <td>{{o.orderType}}</td>
+  </tr>
+  </tbody>
+</table>
+
+

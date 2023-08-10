@@ -1,0 +1,303 @@
+<div class="title">
+  <h3 class="text-center">Админ-панель</h3>
+</div>
+
+<div class="container">
+
+  <div class="row justify-content-evenly">
+
+    <div class="col-5 admin_form">
+
+      <div class="row d-flex flex-wrap justify-content-between align-items-center border-bottom" ng-repeat="c in categoryPage.content">
+
+        <div class="col-5">
+          <a type="button" ng-click="showPageByCategory(c.title)">
+            <h6>{{c.title}}</h6>
+          </a>
+        </div>
+        <div class="col-3">
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalCategoryChangeForm{{c.id}}">Изменить</button>
+        </div>
+
+        <div class="col-3">
+          <a type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ModalCategoriesDeleteForm{{c.id}}">
+            Удалить
+          </a>
+        </div>
+
+        <div class="modal fade" id="ModalCategoriesDeleteForm{{c.id}}" tabindex="-1" aria-labelledby="ModalFormLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-body">
+                <button id="delete" type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="myform bg-dark">
+                  <h1 class="text-center">Подтверждение удаления {{c.title}}</h1>
+                  <button type="button" class="btn btn-light mt-3" ng-click="deleteCategory(c.id)">Удалить</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" id="ModalCategoryChangeForm{{c.id}}" tabindex="-1" aria-labelledby="ModalFormLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-body">
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <form class="bg-dark" ng-submit="updateCategoryTitle(c.id)">
+
+                  <div class="modal-header fs-2 text-center" style="color:white;">
+                    Введите новое название категории
+                  </div>
+
+                  <div class="modal-body text-center">
+                    <div class="input-group">
+                      <label class="input-group-text" for="inputCategoryChangeTitle{{c.id}}">Название</label>
+                      <input type="text" id="inputCategoryChangeTitle{{c.id}}" value="{{c.title}}" required>
+                    </div>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-target="#ModalCategoryChangeImageForm{{c.id}}" data-bs-toggle="modal" data-bs-dismiss="modal">Изменить картинку</button>
+                    <button type="submit" class="btn btn-dark">Сохранить</button>
+                  </div>
+
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" id="ModalCategoryChangeImageForm{{c.id}}" tabindex="-1" aria-labelledby="ModalFormLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-body">
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <form class="bg-dark">
+
+                  <div class="modal-header fs-2 text-center" style="color:white;">
+                    Изменение картинки
+                  </div>
+
+                  <div class="modal-footer">
+                    <div class=" input-group">
+                      <label class="input-group-text" for="imageInput{{c.id}}">Загрузить</label>
+                      <input type="text" id="imageInput{{c.id}}" class="form-control" accept=".jpg, .jpeg, .png" required>
+                    </div>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="submit" ng-click="uploadCategoryImage(c.id)">Сохранить</button>
+                  </div>
+
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="d-flex flex-wrap justify-content-center mt-3">
+        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#ModalCategoryCreateForm">Создать</button>
+      </div>
+
+      <div class="modal fade" id="ModalCategoryCreateForm" tabindex="-1" aria-labelledby="ModalFormLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body">
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+              <form class="bg-dark" ng-submit="createCategory()">
+
+                <div class="modal-header fs-2 text-center" style="color:white;">
+                  Введите название категории
+                </div>
+
+                <div class="modal-body text-center">
+                  <input type="text" id="inputCategoryTitle" ng-model="category.title" required>
+                </div>
+
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-dark">Создать</button>
+                </div>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+    </div>
+
+    <div class="col-5 admin_form">
+
+      <div class="row d-flex flex-wrap justify-content-between align-items-center border-bottom" ng-repeat="p in productsPage.content">
+
+        <div class="col-5">
+          <h6>{{p.title}}</h6>
+        </div>
+
+        <div class="col-3">
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalProductChangeForm{{p.id}}">Изменить</button>
+        </div>
+
+        <div class="col-3">
+          <a type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ModalProductDeleteForm{{p.id}}">
+            Удалить
+          </a>
+        </div>
+
+        <div class="modal fade" id="ModalProductDeleteForm{{p.id}}" tabindex="-1" aria-labelledby="ModalFormLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-body">
+                <button id="deleteProduct" type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="myform bg-dark">
+                  <h1 class="text-center">Подтверждение удаления {{p.title}}</h1>
+                  <button type="button" class="btn btn-light mt-3" ng-click="deleteProduct(p.id, p.categoryTitle)">Удалить</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" id="ModalProductChangeForm{{p.id}}" tabindex="-1" aria-labelledby="ModalFormLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-body">
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <form class="bg-dark" ng-submit="updateProduct(p.id)">
+
+                  <div class="modal-header text-center">
+                    <h2  style="color: white;">Изменение {{p.title}}</h2>
+                  </div>
+
+                  <div class="modal-body text-center">
+
+                    <div class="input-group">
+                      <input type="text" id="inputProductChangeId{{p.id}}" ng-model="changeProduct.id" hidden>
+                    </div>
+
+                    <div class="input-group">
+                      <input type="text" id="inputProductChangeCategory{{p.id}}" ng-model="changeProduct.categoryTitle" hidden>
+                    </div>
+
+                    <div class="input-group">
+                      <label class="input-group-text" for="inputProductChangeTitle{{p.id}}" >Новое название</label>
+                      <input type="text" id="inputProductChangeTitle{{p.id}}" value="{{p.title}}" required>
+                    </div>
+
+                    <div class=" input-group">
+                      <label class="input-group-text" for="inputProductChangePrice{{p.id}}">Новая цена</label>
+                      <input type="text" id="inputProductChangePrice{{p.id}}" value="{{p.price}}" required>
+                    </div>
+
+                    <div class=" input-group">
+                      <label class="input-group-text" for="inputProductChangeDescription{{p.id}}">Новое описание</label>
+                      <input type="text" id="inputProductChangeDescription{{p.id}}" value="{{p.description}}" required>
+                    </div>
+
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" ng-click="changeModal(p.id)">Изменить картинку</button>
+                    <button type="submit" class="btn btn-dark">Сохранить</button>
+                  </div>
+
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" id="ModalProductChangeImageForm{{p.id}}" tabindex="-1" aria-labelledby="ModalFormLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-body">
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <form class="bg-dark">
+
+                  <div class="modal-header fs-2 text-center" style="color:white;">
+                    Изменение картинки
+                  </div>
+
+                  <div class="modal-footer">
+                    <div class=" input-group">
+                      <label class="input-group-text" for="imageProductInput{{p.id}}">Загрузить</label>
+                      <input type="text" id="imageProductInput{{p.id}}" class="form-control" accept=".jpg, .jpeg, .png" required>
+                    </div>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="submit" ng-click="uploadProductImage(p.id)">Сохранить</button>
+                  </div>
+
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="d-flex flex-wrap justify-content-center mt-3">
+        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#ModalProductCreateForm">Создать</button>
+      </div>
+
+      <div class="modal fade" id="ModalProductCreateForm" tabindex="-1" aria-labelledby="ModalFormLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body">
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+              <form class="bg-dark" ng-submit="createProduct()">
+
+                <div class="modal-header fs-2 text-center" style="color:white;">
+                  Введите название продукта
+                </div>
+
+                <div class="modal-body text-center">
+                  <div class="input-group">
+                    <input type="text" id="productCategoryTitle" name="productCategoryTitle" ng-model="newProduct.categoryTitle" hidden>
+                  </div>
+
+                  <div class=" input-group">
+                    <label class="input-group-text" for="inputProductTitle">Название</label>
+                    <input type="text" id="inputProductTitle" ng-model="newProduct.title" required>
+                  </div>
+
+                  <div class=" input-group">
+                    <label class="input-group-text" for="inputPriceTitle">Цена</label>
+                    <input type="text" id="inputPriceTitle" ng-model="newProduct.price" required>
+                  </div>
+
+                </div>
+
+
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-dark">Создать</button>
+                </div>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+</div>
+</div>
