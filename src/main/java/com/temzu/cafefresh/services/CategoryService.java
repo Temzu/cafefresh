@@ -1,6 +1,8 @@
 package com.temzu.cafefresh.services;
 
+import com.temzu.cafefresh.dtos.CategoryCreateDto;
 import com.temzu.cafefresh.dtos.CategoryDto;
+import com.temzu.cafefresh.dtos.CategoryUpdateDto;
 import com.temzu.cafefresh.entities.Category;
 import java.util.Set;
 import org.springframework.data.domain.Page;
@@ -17,11 +19,11 @@ public interface CategoryService {
 
   CategoryDto findByTitle(String title);
 
-//  CategoryDto createCategory(CategoryCreateDto categoryCreateDto);
+  CategoryDto createCategory(CategoryCreateDto categoryCreateDto);
 
   void deleteById(Long id);
 
-//  CategoryDto update(CategoryUpdateDto categoryUpdateDto);
+  CategoryDto update(CategoryUpdateDto categoryUpdateDto);
 
   void uploadCategoryImage(Long id, String imageUrl);
 }

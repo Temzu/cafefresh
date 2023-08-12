@@ -27,3 +27,21 @@ spring:
       enabled: true
       settings:
         web-allow-others: false
+  data:
+    redis:
+      host: localhost
+      port: 6379
+#      password: ${REDISPASSWORD}
+#      username: ${REDISUSER}
+#      url: ${REDIS_URL}
+
+#logging:
+#  level:
+#    org:
+#      springframework:
+#        jdbc:
+#          core:
+#            JdbcTemplate=DEBUG;StatementCreatorUtils=TRACE
+utils:
+  cart:
+    prefix: CAFE_FRESH_CART_

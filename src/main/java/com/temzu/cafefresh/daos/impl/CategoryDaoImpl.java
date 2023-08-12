@@ -28,7 +28,7 @@ public class CategoryDaoImpl implements CategoryDao {
 
   @Override
   public Page<Category> findPageAll(int page, int pageSize) {
-    return null;
+    return categoryRepository.findAll(PageRequest.of(page - 1, pageSize));
   }
 
   @Override
@@ -40,7 +40,9 @@ public class CategoryDaoImpl implements CategoryDao {
 
   @Override
   public Category findByTitle(String title) {
-    return null;
+    return categoryRepository
+        .findByTitle(title)
+        .orElseThrow(() -> ResourceNotFoundException.byTitle(title, Category.class));
   }
 
   @Override

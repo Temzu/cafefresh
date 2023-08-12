@@ -1,6 +1,8 @@
 package com.temzu.cafefresh.controllers;
 
+import com.temzu.cafefresh.dtos.CategoryDto;
 import com.temzu.cafefresh.dtos.ProductDto;
+import com.temzu.cafefresh.services.CategoryService;
 import com.temzu.cafefresh.services.ProductService;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,8 @@ public class ProductController {
 
   private final ProductService productService;
 
+  private final CategoryService categoryService;
+
   @GetMapping
   public Page<ProductDto> findPage(
       @RequestParam(name = "page", defaultValue = "1") Integer page,
@@ -27,6 +31,29 @@ public class ProductController {
       pageSize = 10;
     }
     return productService.findPage(page, pageSize);
+  }
+
+  @GetMapping("/categories/{category_title}")
+  public Page<ProductDto> findPageByCategory(
+      @PathVariable(name = "category_title") String categoryTitle,
+      @RequestParam(name = "page", defaultValue = "1") Integer page,
+      @RequestParam(name = "page_size", defaultValue = "10") Integer pageSize) {
+    if (page < 1 || pageSize < 1) {
+      page = 1;
+      pageSize = 10;
+    }
+    return productService.findPageByCategoryTitle(categoryTitle, page, pageSize);
+  }
+
+  @GetMapping("/categories")
+  public Page<CategoryDto> findCategoryPage(
+      @RequestParam(name = "page", defaultValue = "1") Integer page,
+      @RequestParam(name = "page_size", defaultValue = "10") Integer pageSize) {
+    if (page < 1 || pageSize < 1) {
+      page = 1;
+      pageSize = 10;
+    }
+    return categoryService.findPage(page, pageSize);
   }
 
   @GetMapping("/all")

@@ -8,7 +8,6 @@ public class CafefreshApplication {
 
   public static void main(String[] args) {
     SpringApplication.run(CafefreshApplication.class, args);
-
   }
 
 }

@@ -1,6 +1,7 @@
 package com.temzu.cafefresh.repositories;
 
 import com.temzu.cafefresh.entities.Category;
+import java.util.Optional;
 import java.util.Set;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,4 +14,6 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
   Set<Category> findAllBy();
 
   Page<Category> findAllByActiveStatusTrue(Pageable pageable);
+
+  Optional<Category> findByTitle(String title);
 }

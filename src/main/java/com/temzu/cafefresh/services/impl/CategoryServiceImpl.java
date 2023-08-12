@@ -1,7 +1,9 @@
 package com.temzu.cafefresh.services.impl;
 
 import com.temzu.cafefresh.daos.CategoryDao;
+import com.temzu.cafefresh.dtos.CategoryCreateDto;
 import com.temzu.cafefresh.dtos.CategoryDto;
+import com.temzu.cafefresh.dtos.CategoryUpdateDto;
 import com.temzu.cafefresh.mappers.CategoryMapper;
 import com.temzu.cafefresh.services.CategoryService;
 import java.util.Set;
@@ -31,7 +33,7 @@ public class CategoryServiceImpl implements CategoryService {
 
   @Override
   public Page<CategoryDto> findPageAll(int page, int pageSize) {
-    return null;
+    return categoryDao.findPageAll(page, pageSize).map(categoryMapper::toCategoryDto);
   }
 
   @Override
@@ -45,7 +47,17 @@ public class CategoryServiceImpl implements CategoryService {
   }
 
   @Override
+  public CategoryDto createCategory(CategoryCreateDto categoryCreateDto) {
+    return null;
+  }
+
+  @Override
   public void deleteById(Long id) {}
+
+  @Override
+  public CategoryDto update(CategoryUpdateDto categoryUpdateDto) {
+    return null;
+  }
 
   @Override
   public void uploadCategoryImage(Long id, String imageUrl) {}

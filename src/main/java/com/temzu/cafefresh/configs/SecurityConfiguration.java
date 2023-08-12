@@ -1,5 +1,7 @@
 package com.temzu.cafefresh.configs;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 import com.temzu.cafefresh.filters.JwtAuthenticationFilter;
 import com.temzu.cafefresh.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -29,18 +32,18 @@ public class SecurityConfiguration {
 
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    http.csrf(AbstractHttpConfigurer::disable)
+    http
+        .csrf(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests(auth -> auth
-            .requestMatchers("/api/v1/orders/**").authenticated()
-            .requestMatchers("/admin/**").hasAnyRole("ADMIN")
-            .requestMatchers("/manager/**").hasAnyRole("ADMIN", "MANAGER")
-            .anyRequest().authenticated()
+            .requestMatchers(new AntPathRequestMatcher("/api/v1/orders/**")).authenticated()
+            .requestMatchers(new AntPathRequestMatcher("/admin/**")).hasAnyRole("ADMIN")
+            .requestMatchers(new AntPathRequestMatcher("/manager/**")).hasAnyRole("ADMIN", "MANAGER")
+            .anyRequest().permitAll()
         )
         .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-        .httpBasic(Customizer.withDefaults())
+        .httpBasic(withDefaults())
         .authenticationProvider(authenticationProvider()).addFilterBefore(
-            jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-        .build();
+            jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
     return http.build();
   }

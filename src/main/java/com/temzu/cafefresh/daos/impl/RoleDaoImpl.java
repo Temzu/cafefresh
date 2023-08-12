@@ -1,9 +1,9 @@
 package com.temzu.cafefresh.daos.impl;
 
-import com.temzu.freshcafe.dao.RoleDao;
-import com.temzu.freshcafe.entities.Role;
-import com.temzu.freshcafe.exceptions.ResourceNotFoundException;
-import com.temzu.freshcafe.repositories.RoleRepository;
+import com.temzu.cafefresh.daos.RoleDao;
+import com.temzu.cafefresh.entities.Role;
+import com.temzu.cafefresh.exceptions.ResourceNotFoundException;
+import com.temzu.cafefresh.repositories.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

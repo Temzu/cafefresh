@@ -25,12 +25,12 @@ public class ProductDaoImpl implements ProductDao {
 
   @Override
   public Page<Product> findPageByCategory(Category category, int page, int pageSize) {
-    return null;
+    return productRepository.findAllByCategoryAndActiveStatusTrue(category, PageRequest.of(page - 1, pageSize));
   }
 
   @Override
   public List<Product> findAllByIdIsIn(List<Long> ids) {
-    return null;
+    return productRepository.findAllByIdIsIn(ids);
   }
 
   @Override

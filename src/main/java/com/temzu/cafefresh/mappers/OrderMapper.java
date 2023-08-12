@@ -1,9 +1,9 @@
 package com.temzu.cafefresh.mappers;
 
+import com.temzu.cafefresh.dtos.OrderDto;
 import com.temzu.cafefresh.entities.Order;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.jaxb.SpringDataJaxb.OrderDto;
 import org.springframework.stereotype.Component;
 
 @Component

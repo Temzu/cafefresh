@@ -3,6 +3,7 @@ package com.temzu.cafefresh.services.impl;
 import com.temzu.cafefresh.daos.OrderDao;
 import com.temzu.cafefresh.daos.UserDao;
 import com.temzu.cafefresh.dtos.OrderCreateDto;
+import com.temzu.cafefresh.dtos.OrderDto;
 import com.temzu.cafefresh.entities.Order;
 import com.temzu.cafefresh.entities.OrderItem;
 import com.temzu.cafefresh.entities.User;
@@ -17,7 +18,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.jaxb.SpringDataJaxb.OrderDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

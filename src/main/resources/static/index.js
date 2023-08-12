@@ -61,7 +61,7 @@
       redirectTo: '/'
     });
   }
-  const contextPath = "https://localhost:8189/freshcafe";
+  const contextPath = "http://localhost:8189/cafefresh";
 
   function run($rootScope, $http, $localStorage) {
 //
@@ -102,7 +102,7 @@
 angular.module('cafefresh-front').controller('indexController',
     function ($rootScope, $scope, $http, $localStorage, $location) {
 
-      $rootScope.contextPath = "https://localhost:8189/freshcafe";
+      $rootScope.contextPath = "http://localhost:8189/cafefresh";
 
       let myModal = document.getElementById('ModalForm');
 

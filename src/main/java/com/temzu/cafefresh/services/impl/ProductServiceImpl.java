@@ -1,5 +1,6 @@
 package com.temzu.cafefresh.services.impl;
 
+import com.temzu.cafefresh.daos.CategoryDao;
 import com.temzu.cafefresh.daos.ProductDao;
 import com.temzu.cafefresh.dtos.ProductDto;
 import com.temzu.cafefresh.mappers.ProductMapper;
@@ -17,6 +18,8 @@ public class ProductServiceImpl implements ProductService {
   private final ProductDao productDao;
   private final ProductMapper productMapper;
 
+  private final CategoryDao categoryDao;
+
   @Override
   public Page<ProductDto> findPage(Integer page, Integer pageSize) {
     return productDao.findPage(page, pageSize).map(productMapper::toProductDto);
@@ -25,7 +28,9 @@ public class ProductServiceImpl implements ProductService {
   @Override
   public Page<ProductDto> findPageByCategoryTitle(
       String categoryTitle, Integer page, Integer pageSize) {
-    return null;
+    return productDao
+        .findPageByCategory(categoryDao.findByTitle(categoryTitle), page, pageSize)
+        .map(productMapper::toProductDto);
   }
 
   @Override
