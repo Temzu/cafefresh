@@ -1,6 +1,8 @@
 package com.temzu.cafefresh.mappers;
 
+import com.temzu.cafefresh.dtos.CategoryCreateDto;
 import com.temzu.cafefresh.dtos.CategoryDto;
+import com.temzu.cafefresh.dtos.CategoryUpdateDto;
 import com.temzu.cafefresh.entities.Category;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -16,11 +18,11 @@ public class CategoryMapper {
     return mapper.map(category, CategoryDto.class);
   }
 
-//  public Category toCategory(CategoryCreateDto categoryCreateDto) {
-//    return mapper.map(categoryCreateDto, Category.class);
-//  }
-//
-//  public Category toCategory(CategoryUpdateDto categoryUpdateDto) {
-//    return mapper.map(categoryUpdateDto, Category.class);
-//  }
+  public Category toCategory(CategoryCreateDto categoryCreateDto) {
+    return mapper.map(categoryCreateDto, Category.class);
+  }
+
+  public Category toCategory(CategoryUpdateDto categoryUpdateDto) {
+    return mapper.map(categoryUpdateDto, Category.class);
+  }
 }

@@ -46,15 +46,18 @@ public class CategoryDaoImpl implements CategoryDao {
   }
 
   @Override
-  public void deleteById(Long id) {}
-
-  @Override
-  public Category create(Category category) {
-    return null;
+  public void deleteById(Long id) {
+    findById(id).setActiveStatus(false);
   }
 
   @Override
-  public Category update(Category category) {
-    return null;
+  public Category create(Category category) {
+    category.setActiveStatus(true);
+    return categoryRepository.save(category);
+  }
+
+  @Override
+  public Category update(Category toCategory) {
+    return categoryRepository.save(toCategory);
   }
 }
