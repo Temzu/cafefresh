@@ -52,7 +52,9 @@ public class CategoryServiceImpl implements CategoryService {
   }
 
   @Override
-  public void deleteById(Long id) {}
+  public void deleteById(Long id) {
+
+  }
 
   @Override
   public CategoryDto update(CategoryUpdateDto categoryUpdateDto) {
@@ -60,5 +62,7 @@ public class CategoryServiceImpl implements CategoryService {
   }
 
   @Override
-  public void uploadCategoryImage(Long id, String imageUrl) {}
+  public void uploadCategoryImage(Long id, String imageUrl) {
+
+  }
 }
