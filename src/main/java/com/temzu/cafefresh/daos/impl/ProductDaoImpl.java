@@ -47,14 +47,16 @@ public class ProductDaoImpl implements ProductDao {
 
   @Override
   public boolean existById(Long id) {
-    return false;
+    return productRepository.existsById(id);
   }
 
   @Override
   public Product saveOrUpdate(Product product) {
-    return null;
+    return productRepository.save(product);
   }
 
   @Override
-  public void deleteById(Long id) {}
+  public void deleteById(Long id) {
+    findById(id).setActiveStatus(false);
+  }
 }

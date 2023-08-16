@@ -1,6 +1,8 @@
 package com.temzu.cafefresh.services;
 
+import com.temzu.cafefresh.dtos.ProductCreateDto;
 import com.temzu.cafefresh.dtos.ProductDto;
+import com.temzu.cafefresh.dtos.ProductUpdateDto;
 import java.util.Set;
 import org.springframework.data.domain.Page;
 
@@ -14,10 +16,12 @@ public interface ProductService {
 
   Set<ProductDto> findAll();
 
-//  ProductDto save(ProductCreateDto productCreateDto);
-//
-//  ProductDto update(Long id, ProductUpdateDto productUpdateDto);
+  ProductDto save(ProductCreateDto productCreateDto);
+
+  ProductDto update(Long id, ProductUpdateDto productUpdateDto);
 
   void deleteById(Long id);
+
+  void uploadProductImage(Long id, String imageUrl);
 
 }
