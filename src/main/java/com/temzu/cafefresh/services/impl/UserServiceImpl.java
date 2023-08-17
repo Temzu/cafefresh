@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public UserDto findUserByLogin(String login) {
-    return null;
+    return userMapper.toUserDto(userDao.findByLogin(login));
   }
 
   @Override

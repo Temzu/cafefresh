@@ -11,6 +11,7 @@ import com.temzu.cafefresh.repositories.UserRepository;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,13 @@ public class UserDaoImpl implements UserDao {
 
   private final UserRepository userRepository;
   private final RoleDao roleDao;
-  private final PasswordEncoder passwordEncoder;
+
+  private PasswordEncoder passwordEncoder;
+
+  @Autowired
+  public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
+    this.passwordEncoder = passwordEncoder;
+  }
 
   @Override
   public User save(User user) {
