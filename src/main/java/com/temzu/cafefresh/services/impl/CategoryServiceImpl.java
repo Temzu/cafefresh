@@ -68,8 +68,9 @@ public class CategoryServiceImpl implements CategoryService {
     return null;
   }
 
+  @Transactional
   @Override
   public void uploadCategoryImage(Long id, String imageUrl) {
-
+    categoryDao.findById(id).setImageSource(imageUrl);
   }
 }

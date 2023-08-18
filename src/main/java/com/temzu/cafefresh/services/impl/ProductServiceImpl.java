@@ -80,5 +80,6 @@ public class ProductServiceImpl implements ProductService {
   @Transactional
   @Override
   public void uploadProductImage(Long id, String imageUrl) {
+    productDao.findById(id).setImageSource(imageUrl);
   }
 }
