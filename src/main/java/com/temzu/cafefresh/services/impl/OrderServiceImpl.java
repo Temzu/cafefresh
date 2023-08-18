@@ -14,6 +14,7 @@ import com.temzu.cafefresh.services.CartService;
 import com.temzu.cafefresh.services.OrderService;
 import com.temzu.cafefresh.services.RedisService;
 import com.temzu.cafefresh.util.Cart;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -41,9 +42,7 @@ public class OrderServiceImpl implements OrderService {
   @Override
   public Page<OrderDto> findPageByUserLogin(String login, int page, int pageSize) {
     User curUser = userDao.findByLogin(login);
-    return orderDao
-        .findPageByUser(curUser, page, pageSize)
-        .map(orderMapper::toOrderDto);
+    return orderDao.findPageByUser(curUser, page, pageSize).map(orderMapper::toOrderDto);
   }
 
   @Transactional
@@ -85,5 +84,12 @@ public class OrderServiceImpl implements OrderService {
   @Override
   public void changeStatus(Long id) {
     orderDao.changeStatus(id);
+  }
+
+  @Override
+  public List<OrderDto> findAllByCreatedAtBetween(LocalDateTime from, LocalDateTime to) {
+    return orderDao.findAllByCreatedAtBetween(from, to).stream()
+        .map(orderMapper::toOrderDto)
+        .collect(Collectors.toList());
   }
 }

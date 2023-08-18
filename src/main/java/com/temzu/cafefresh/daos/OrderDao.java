@@ -2,6 +2,7 @@ package com.temzu.cafefresh.daos;
 
 import com.temzu.cafefresh.entities.Order;
 import com.temzu.cafefresh.entities.User;
+import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.data.domain.Page;
 
@@ -16,4 +17,6 @@ public interface OrderDao {
   List<Order> findAll();
 
   void changeStatus(Long id);
+
+  List<Order> findAllByCreatedAtBetween(LocalDateTime from, LocalDateTime to);
 }

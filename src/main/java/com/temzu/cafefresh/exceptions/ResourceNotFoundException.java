@@ -2,6 +2,7 @@ package com.temzu.cafefresh.exceptions;
 
 import com.temzu.cafefresh.enums.ExceptionTypes;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class ResourceNotFoundException extends ResourceException {
 
@@ -39,7 +40,7 @@ public class ResourceNotFoundException extends ResourceException {
     return new ResourceNotFoundException(entityClass, ExceptionTypes.EMAIL, email);
   }
 
-  public static ResourceNotFoundException byDate(LocalDate localDate, Class<?> entityClass) {
+  public static ResourceNotFoundException byDate(LocalDateTime localDate, Class<?> entityClass) {
     return new ResourceNotFoundException(entityClass, ExceptionTypes.DATE, localDate.toString());
   }
 }

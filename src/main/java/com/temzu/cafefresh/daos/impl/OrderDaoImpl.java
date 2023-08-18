@@ -1,10 +1,13 @@
 package com.temzu.cafefresh.daos.impl;
 
 import com.temzu.cafefresh.daos.OrderDao;
+import com.temzu.cafefresh.dtos.OrderDto;
 import com.temzu.cafefresh.entities.Order;
 import com.temzu.cafefresh.entities.User;
 import com.temzu.cafefresh.exceptions.ResourceNotFoundException;
+import com.temzu.cafefresh.reports.OrderReportByDate;
 import com.temzu.cafefresh.repositories.OrderRepository;
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -48,5 +51,14 @@ public class OrderDaoImpl implements OrderDao {
     }
     order.setOrderStatusValue(newStatus);
     orderRepository.save(order);
+  }
+
+  @Override
+  public List<Order> findAllByCreatedAtBetween(LocalDateTime from, LocalDateTime to) {
+    List<Order> orders = orderRepository.findAllByCreatedAtBetween(from, to);
+    if (orders.isEmpty()) {
+      throw ResourceNotFoundException.byDate(from, OrderReportByDate.class);
+    }
+    return orders;
   }
 }
