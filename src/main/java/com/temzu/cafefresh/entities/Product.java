@@ -12,6 +12,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -52,4 +54,28 @@ public class Product {
   @Column(name = "updatedAt")
   @UpdateTimestamp
   private LocalDateTime updatedAt;
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o)
+      return true;
+
+    if (o == null || getClass() != o.getClass())
+      return false;
+
+    Product product = (Product) o;
+
+    return new EqualsBuilder().append(activeStatus, product.activeStatus).append(id, product.id)
+        .append(title, product.title).append(category, product.category)
+        .append(price, product.price).append(description, product.description)
+        .append(imageSource, product.imageSource).append(createdAt, product.createdAt)
+        .append(updatedAt, product.updatedAt).isEquals();
+  }
+
+  @Override
+  public int hashCode() {
+    return new HashCodeBuilder(17, 37).append(id).append(title).append(category).append(price)
+        .append(description).append(imageSource).append(activeStatus).append(createdAt)
+        .append(updatedAt).toHashCode();
+  }
 }
