@@ -31,21 +31,19 @@ class ProductControllerTest {
   @Test
   void findPage() {
 
-    String response = given()
-        .get("/cafefresh/api/v1/products")
-        .then()
-        .extract()
-        .response()
-        .asString();
-
-//    List<ProductDto> orderDtos = pageResponse.jsonPath().getList("content", ProductDto.class);
-
-    System.out.println(response);
-
-//    get("/cafefresh/api/v1/products")
+//    String response = given()
+//        .get("/cafefresh/api/v1/products")
 //        .then()
-//        .assertThat()
-//        .body("numberOfElements", equalTo(10));
+//        .extract()
+//        .response()
+//        .asString();
+//
+//    System.out.println(response);
+
+    get("/cafefresh/api/v1/products")
+        .then()
+        .assertThat()
+        .body("numberOfElements", equalTo(10));
   }
 
   @Test
@@ -78,7 +76,4 @@ class ProductControllerTest {
   void deleteById() {
   }
 
-  @Test
-  void uploadProductImage() {
-  }
 }

@@ -1,6 +1,8 @@
 package com.temzu.cafefresh.controllers;
 
+import static io.restassured.RestAssured.get;
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.*;
 
 import io.restassured.RestAssured;
@@ -25,48 +27,31 @@ class CategoryControllerTest {
   }
 
   @Test
-  @Transactional(isolation = Isolation.SERIALIZABLE)
   void findActivePage() {
-    String response = given()
-        .get("/cafefresh/api/v1/categories")
+    get("/cafefresh/api/v1/categories")
         .then()
-        .extract()
-        .response()
-        .asString();
-
-//    List<ProductDto> orderDtos = pageResponse.jsonPath().getList("content", ProductDto.class);
-
-    System.out.println(response);
+        .assertThat()
+        .body("numberOfElements", equalTo(10));
   }
 
-  @Test
-  void findPageAll() {
-
-
-  }
-
-  @Test
-  void findAll() {
-
-  }
 
   @Test
   void findPageByCategory() {
-    }
+
+  }
 
   @Test
   void createCategory() {
-    }
+
+  }
 
   @Test
   void update() {
-    }
+
+  }
 
   @Test
   void deleteById() {
-    }
 
-  @Test
-  void uploadCategoryImage() {
-    }
+  }
 }
