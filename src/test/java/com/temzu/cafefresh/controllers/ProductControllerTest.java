@@ -5,6 +5,7 @@ import static io.restassured.RestAssured.*;
 import static io.restassured.matcher.RestAssuredMatchers.*;
 import static org.hamcrest.Matchers.*;
 
+import com.temzu.cafefresh.dtos.OrderDto;
 import com.temzu.cafefresh.dtos.ProductDto;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -30,15 +31,18 @@ class ProductControllerTest {
 
   @Test
   void findPage() {
+    Response pageResponse =
+        given()
+            .when()
+            .get("/cafefresh/api/v1/products")
+            .then()
+            .extract()
+            .response();
 
-//    String response = given()
-//        .get("/cafefresh/api/v1/products")
-//        .then()
-//        .extract()
-//        .response()
-//        .asString();
-//
-//    System.out.println(response);
+    List<ProductDto> productDtos = pageResponse.jsonPath().getList("content", ProductDto.class);
+
+    assertNotNull(productDtos);
+    assertFalse(productDtos.isEmpty());
 
     get("/cafefresh/api/v1/products")
         .then()

@@ -54,9 +54,6 @@ class OrderControllerTest {
     Mockito.when(tokenService.parseToken(token))
         .thenReturn(new UserInfo(userId, login, login + "@gmail.com", roles));
 
-    UserInfo userInfo = tokenService.parseToken(token);
-    System.out.println(userInfo);
-
     Mockito.when(redisService.exists(token + "_token")).thenReturn(true);
     Mockito.when(redisService.get(token)).thenReturn(token);
 
@@ -70,7 +67,6 @@ class OrderControllerTest {
             .response();
 
     List<OrderDto> orderDtos = pageResponse.jsonPath().getList("content", OrderDto.class);
-    System.out.println(orderDtos);
 
     assertNotNull(orderDtos);
     assertFalse(orderDtos.isEmpty());
