@@ -1,6 +1,6 @@
 package com.temzu.cafefresh.exceptions.hadlers;
 
-import com.temzu.cafefresh.exceptions.UserLoginOrPasswordException;
+import com.temzu.cafefresh.exceptions.UserEmailOrPasswordException;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
@@ -22,8 +22,8 @@ public class BadRequestExceptionHandler {
     return new ResponseEntity<>(new CustomError(messages), HttpStatus.BAD_REQUEST);
   }
 
-  @ExceptionHandler(UserLoginOrPasswordException.class)
-  public ResponseEntity<?> catchUserLoginOrPasswordException(UserLoginOrPasswordException ex) {
+  @ExceptionHandler(UserEmailOrPasswordException.class)
+  public ResponseEntity<?> catchUserLoginOrPasswordException(UserEmailOrPasswordException ex) {
     return new ResponseEntity<>(new CustomError(ex.getMessage()), HttpStatus.BAD_REQUEST);
   }
 

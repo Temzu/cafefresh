@@ -6,7 +6,7 @@ import com.temzu.cafefresh.entities.Role;
 import com.temzu.cafefresh.entities.User;
 import com.temzu.cafefresh.exceptions.ResourceAlreadyExistsException;
 import com.temzu.cafefresh.exceptions.ResourceNotFoundException;
-import com.temzu.cafefresh.exceptions.UserLoginOrPasswordException;
+import com.temzu.cafefresh.exceptions.UserEmailOrPasswordException;
 import com.temzu.cafefresh.repositories.UserRepository;
 import java.util.List;
 import java.util.Optional;
@@ -63,10 +63,10 @@ public class UserDaoImpl implements UserDao {
   }
 
   @Override
-  public User findByLoginAndPassword(String login, String password) {
-    return Optional.of(findByEmail(login))
+  public User findByEmailAndPassword(String email, String password) {
+    return Optional.of(findByEmail(email))
         .filter(user -> passwordEncoder.matches(password, user.getPassword()))
-        .orElseThrow(UserLoginOrPasswordException::new);
+        .orElseThrow(UserEmailOrPasswordException::new);
   }
 
   @Override

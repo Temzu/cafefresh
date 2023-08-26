@@ -34,7 +34,7 @@ public class AuthServiceImpl implements AuthService {
   @Transactional
   @Override
   public AuthResponseDto login(AuthRequestDto request) {
-    User user = userDao.findByLoginAndPassword(request.getEmail(), request.getPassword());
+    User user = userDao.findByEmailAndPassword(request.getEmail(), request.getPassword());
     String token = returnToken(user);
     return new AuthResponseDto(token);
   }
