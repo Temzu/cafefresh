@@ -11,7 +11,7 @@
       <div class="row cart-product" ng-repeat="oi in cart.items">
 
         <div class="col-lg-2 cart-product-img" ng-repeat="p in allProducts | filter:{id : oi.productId} : true">
-          <img src="{{p.imageName}}" alt="">
+          <img src="{{p.imageSource}}" alt="">
         </div>
 
         <div class="col-lg-3 col-3">
@@ -84,7 +84,7 @@
 
           <div class="form-group">
             <label for="inputGroupSelect01">Тип заказа</label>
-            <select class="form-select" id="inputGroupSelect01" ng-model="order_info.orderTypeValue"
+            <select class="form-select" id="inputGroupSelect01" ng-model="order_info.orderTypeId"
                     required>
               <option selected disabled value="">Выберите...</option>
               <option value="1">Доставка</option>

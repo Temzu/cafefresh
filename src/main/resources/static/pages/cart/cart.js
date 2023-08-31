@@ -68,6 +68,7 @@ angular.module('cafefresh-front').controller('cartController',
           alert('Заказ создан');
           $scope.loadCart();
         }, function errorCallback(response) {
+          console.log($scope.order_info);
           alert(response.data.messages);
         });
       }
@@ -78,7 +79,7 @@ angular.module('cafefresh-front').controller('cartController',
         }
       }
 
-      $http.get($rootScope.contextPath + '/api/v1/products/list')
+      $http.get($rootScope.contextPath + '/api/v1/products/all')
       .then(function successCallback(response) {
         $rootScope.allProducts = response.data;
         console.log($rootScope.allProducts);

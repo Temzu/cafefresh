@@ -19,8 +19,5 @@ public interface CategoryDao {
 
   void deleteById(Long id);
 
-  Category create(Category category);
-
-  Category update(Category category);
-
+  Category saveOrUpdate(Category category);
 }

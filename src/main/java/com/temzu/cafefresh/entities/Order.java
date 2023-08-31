@@ -23,6 +23,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -39,7 +40,7 @@ public class Order {
   private Long id;
 
   @OneToMany(mappedBy = "order")
-  @Cascade(org.hibernate.annotations.CascadeType.ALL)
+  @Cascade(CascadeType.PERSIST)
   private List<OrderItem> items;
 
   @Column(name = "price")
@@ -58,13 +59,11 @@ public class Order {
   @Column(name = "phone")
   private String phone;
 
-  @Basic
-  @Column(name = "order_type", columnDefinition = "integer default 1")
-  private Integer orderTypeValue;
+  @Column(name = "order_type_id")
+  private Long orderTypeId;
 
-  @Basic
-  @Column(name = "order_status", columnDefinition = "integer default 1")
-  private Integer orderStatusValue;
+  @Column(name = "order_status_id")
+  private Long orderStatusId;
 
   @CreationTimestamp
   @Column(name = "created_at")
@@ -82,23 +81,23 @@ public class Order {
 
   @PostLoad
   void fillTransient() {
-    if (orderTypeValue > 0) {
-      this.orderType = OrderTypes.of(orderTypeValue);
+    if (orderTypeId > 0) {
+      this.orderType = OrderTypes.of(orderTypeId);
     }
 
-    if (orderStatusValue > 0) {
-      this.orderStatus = OrderStatuses.of(orderStatusValue);
+    if (orderStatusId > 0) {
+      this.orderStatus = OrderStatuses.of(orderStatusId);
     }
   }
 
   @PrePersist
   void fillPersistent() {
     if (orderType != null) {
-      this.orderTypeValue = orderType.getCode();
+      this.orderTypeId = orderType.getCode();
     }
 
     if (orderStatus != null) {
-      this.orderStatusValue = orderStatus.getCode();
+      this.orderStatusId = orderStatus.getCode();
     }
   }
 

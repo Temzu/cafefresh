@@ -9,6 +9,7 @@ import lombok.Data;
 
 @Data
 public class Cart {
+
   private List<OrderItemDto> items;
   private BigDecimal price;
 

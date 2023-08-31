@@ -46,8 +46,9 @@ public class CategoryServiceImpl implements CategoryService {
   @Transactional
   @Override
   public CategoryDto createCategory(CategoryCreateDto categoryCreateDto) {
-    return categoryMapper.toCategoryDto(
-        categoryDao.create(categoryMapper.toCategory(categoryCreateDto)));
+    Category newCategory = categoryMapper.toCategory(categoryCreateDto);
+    newCategory.setActiveStatus(true);
+    return categoryMapper.toCategoryDto(categoryDao.saveOrUpdate(newCategory));
   }
 
   @Transactional
@@ -60,7 +61,7 @@ public class CategoryServiceImpl implements CategoryService {
   public CategoryDto update(CategoryUpdateDto categoryUpdateDto) {
     Category oldCategory = categoryDao.findById(categoryUpdateDto.getId());
     oldCategory.setTitle(categoryUpdateDto.getTitle());
-    return categoryMapper.toCategoryDto(categoryDao.update(oldCategory));
+    return categoryMapper.toCategoryDto(categoryDao.saveOrUpdate(oldCategory));
   }
 
   @Override

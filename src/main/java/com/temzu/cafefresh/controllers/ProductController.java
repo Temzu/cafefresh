@@ -7,6 +7,8 @@ import com.temzu.cafefresh.dtos.ProductUpdateDto;
 import com.temzu.cafefresh.services.CategoryService;
 import com.temzu.cafefresh.services.ProductService;
 import jakarta.validation.Valid;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

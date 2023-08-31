@@ -51,13 +51,7 @@ public class CategoryDaoImpl implements CategoryDao {
   }
 
   @Override
-  public Category create(Category category) {
-    category.setActiveStatus(true);
+  public Category saveOrUpdate(Category category) {
     return categoryRepository.save(category);
-  }
-
-  @Override
-  public Category update(Category toCategory) {
-    return categoryRepository.save(toCategory);
   }
 }

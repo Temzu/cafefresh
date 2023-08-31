@@ -14,7 +14,7 @@ public interface OrderService {
 
   List<OrderDto> findAll();
 
-  void changeStatus(Long id);
+  void changeStatusOnNext(Long id);
 
   List<OrderDto> findAllByCreatedAtBetween(LocalDateTime from, LocalDateTime to);
 }

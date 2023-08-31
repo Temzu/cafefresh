@@ -16,7 +16,5 @@ public interface OrderDao {
 
   List<Order> findAll();
 
-  void changeStatus(Long id);
-
   List<Order> findAllByCreatedAtBetween(LocalDateTime from, LocalDateTime to);
 }

@@ -54,6 +54,6 @@ public class OrderController {
   @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')")
   @PostMapping("/{id}/change_status")
   public void changeNextStatus(@PathVariable Long id) {
-    orderService.changeStatus(id);
+    orderService.changeStatusOnNext(id);
   }
 }

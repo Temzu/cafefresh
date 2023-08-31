@@ -49,13 +49,14 @@ public class OrderServiceImpl implements OrderService {
   @Override
   public void createOrder(String login, OrderCreateDto orderCreateDto) {
     Cart cart = cartService.getCurrentCart(cartService.getCartUuidFromSuffix(login));
+
     Order order =
         Order.builder()
             .phone(orderCreateDto.getPhone())
             .address(orderCreateDto.getAddress())
             .clientName(orderCreateDto.getClientName())
-            .orderTypeValue(orderCreateDto.getOrderTypeValue())
-            .orderStatusValue(OrderStatuses.ORDER_PROCESSING.getCode())
+            .orderTypeId(orderCreateDto.getOrderTypeId())
+            .orderStatus(OrderStatuses.ORDER_PROCESSING)
             .user(userDao.findByLogin(login))
             .price(cart.getPrice())
             .build();
@@ -82,8 +83,11 @@ public class OrderServiceImpl implements OrderService {
 
   @Transactional
   @Override
-  public void changeStatus(Long id) {
-    orderDao.changeStatus(id);
+  public void changeStatusOnNext(Long id) {
+    Order order = orderDao.findById(id);
+    OrderStatuses newOrderStatus = OrderStatuses.of(order.getOrderStatusId() + 1);
+    order.setOrderStatus(newOrderStatus);
+    orderDao.saveOrUpdate(order);
   }
 
   @Override

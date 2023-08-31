@@ -38,7 +38,7 @@ public class Category {
   @Column(name = "active_status")
   private boolean activeStatus;
 
-  @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "category")
   private List<Product> products;
 
   @Column(name = "createdAt")
@@ -48,27 +48,5 @@ public class Category {
   @Column(name = "updatedAt")
   @UpdateTimestamp
   private LocalDateTime updatedAt;
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o)
-      return true;
-
-    if (o == null || getClass() != o.getClass())
-      return false;
-
-    Category category = (Category) o;
-
-    return new EqualsBuilder().append(activeStatus, category.activeStatus).append(id, category.id)
-        .append(title, category.title).append(imageSource, category.imageSource)
-        .append(products, category.products).append(createdAt, category.createdAt)
-        .append(updatedAt, category.updatedAt).isEquals();
-  }
-
-  @Override
-  public int hashCode() {
-    return new HashCodeBuilder(17, 37).append(id).append(title).append(imageSource)
-        .append(activeStatus).append(products).append(createdAt).append(updatedAt).toHashCode();
-  }
 }
 

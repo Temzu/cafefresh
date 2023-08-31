@@ -43,17 +43,6 @@ public class OrderDaoImpl implements OrderDao {
   }
 
   @Override
-  public void changeStatus(Long id) {
-    Order order = findById(id);
-    int newStatus = order.getOrderStatusValue() + 1;
-    if (newStatus > 4) {
-      newStatus = 4;
-    }
-    order.setOrderStatusValue(newStatus);
-    orderRepository.save(order);
-  }
-
-  @Override
   public List<Order> findAllByCreatedAtBetween(LocalDateTime from, LocalDateTime to) {
     List<Order> orders = orderRepository.findAllByCreatedAtBetween(from, to);
     if (orders.isEmpty()) {

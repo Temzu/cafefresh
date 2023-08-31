@@ -28,6 +28,6 @@ public class OrderCreateDto {
   @NotNull(message = "Order type must be not null")
   @Min(value = 1, message = "Order type must be greater than or equal to 1")
   @Max(value = 2, message = "Order type must be less than or equal to 2")
-  private Integer orderTypeValue;
+  private Long orderTypeId;
 
 }
