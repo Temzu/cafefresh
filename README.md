@@ -19,7 +19,7 @@
 
 ## Project Goals:
 - Using the monolith architecture
-- Сreate services: product, order, authentification, report
+- Сreate services: product, order, authentification, report, cart
 - Storing JWT tokens and Carts in Redis
 - Make simple frontend on AngularJS
 
