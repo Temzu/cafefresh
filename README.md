@@ -24,7 +24,7 @@
 - Make simple frontend on AngularJS
 
 ## Features
-- Spring boot 3
+- Spring boot 3.1
 - Java 17
 - HTML + JS + AngularJS
 - Spring Web, Rest, Data
@@ -33,7 +33,7 @@
 - Redis
 - Flyway + H2
 - Lombok
-- Docker
+- Spring docker-compose module
 
 ## Screenshot of the architecrure
 ![image](https://github.com/Temzu/cafefresh/assets/51756264/4f6d35b0-99e3-45b9-9dd7-8128530ba6dd)
