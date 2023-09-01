@@ -13,11 +13,10 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
 @EnableRedisRepositories
-//@Profile("dev")
 public class RedisConfiguration {
 
-//  @Value("${spring.redis.password}")
-//  private String redisPassword;
+  @Value("${spring.data.redis.password}")
+  private String redisPassword;
 
 //  @Value("${spring.redis.username}")
 //  private String redisUserName;
@@ -32,9 +31,8 @@ public class RedisConfiguration {
   @Bean
   public RedisConnectionFactory jedisConnectionFactory() {
     RedisStandaloneConfiguration config = new RedisStandaloneConfiguration(redisHost, redisPort);
-//    config.setPassword(redisPassword);
-//    config.setUsername(redisUserName);
-    return new JedisConnectionFactory();
+    config.setPassword(redisPassword);
+    return new JedisConnectionFactory(config);
   }
 
   @Bean
