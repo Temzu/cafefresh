@@ -19,9 +19,6 @@
 ## Screenshot of the architecrure
 ![image](https://github.com/Temzu/cafefresh/assets/51756264/4f6d35b0-99e3-45b9-9dd7-8128530ba6dd)
 
-## Screenshot of the database architecrure
-![image](https://user-images.githubusercontent.com/51756264/166445201-c90b3086-7274-410a-8e94-778fe85c6c59.png)
-
 ## Screenshot of the product page
 ![image](https://github.com/Temzu/market-microservices/assets/51756264/a56d0301-863f-42b1-b8e4-d2b85d35e2dc)
 
