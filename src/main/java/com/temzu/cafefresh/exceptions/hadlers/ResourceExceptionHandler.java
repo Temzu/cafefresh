@@ -1,5 +1,6 @@
 package com.temzu.cafefresh.exceptions.hadlers;
 
+import com.temzu.cafefresh.exceptions.ResourceAlreadyExistsException;
 import com.temzu.cafefresh.exceptions.ResourceException;
 import com.temzu.cafefresh.exceptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -15,8 +16,8 @@ public class ResourceExceptionHandler {
     return new ResponseEntity<>(new CustomError(e.getMessage()), HttpStatus.NOT_FOUND);
   }
 
-//  @ExceptionHandler(ResourceAlreadyExistsException.class)
-//  public ResponseEntity<?> catchResourceAlreadyExistException(ResourceException e) {
-//    return new ResponseEntity<>(new MarketError(e.getMessage()), HttpStatus.CONFLICT);
-//  }
+  @ExceptionHandler(ResourceAlreadyExistsException.class)
+  public ResponseEntity<?> catchResourceAlreadyExistException(ResourceException e) {
+    return new ResponseEntity<>(new CustomError(e.getMessage()), HttpStatus.CONFLICT);
+  }
 }
